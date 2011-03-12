@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+PATH_TO_SELF=File.dirname(File.expand_path $0)
+puts(PATH_TO_SELF)
+IVY_ROOT="#{PATH_TO_SELF}/../ivy"
+puts(IVY_ROOT)
+TOOLCP=[Dir.glob("#{IVY_ROOT}/*.jar")].flatten.join(':')
+puts(TOOLCP)
+
+exec(*['java',
+       '-Xms128M',
+       '-Xmx128M',
+       '-cp', TOOLCP,
+       'org.apache.ivy.Main',
+       '-ivy', 'ivy.xml',
+       '-settings', "#{IVY_ROOT}/ivysettings.xml",
+       ARGV
+].flatten)
