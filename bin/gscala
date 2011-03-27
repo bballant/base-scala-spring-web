@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+ENV['SCALA_HOME']=Dir.pwd
+ENV['PATH']="#{ENV['PATH']}:bin"
+
+BB_ENV=if ENV['BB_ENV'].nil? then 'development' else ENV['BB_ENV'] end
+
+TOOLCP=[Dir.glob('lib/tool/*.jar')].flatten.join(':')
+CP=[Dir.glob('lib/default/*.jar'), Dir.glob('lib/test/*.jar'), TOOLCP, 'target/classes', 'target/test_classes', 'config'].flatten.join(':')
+
+exec(*['java',
+       '-Xms256M',
+       '-Xmx256M',
+       '-cp', TOOLCP,
+       "-Dscala.home=#{ENV['SCALA_HOME']}",
+       "-Denv.emacs=#{ENV['EMACS']}",
+       "-Dgala.env=#{BB_ENV}",
+       "-Dlog4j.configuration=file:#{Dir.pwd}/config/log4j_#{BB_ENV}.properties",
+       'scala.tools.nsc.MainGenericRunner',
+       '-classpath', CP,
+       ARGV
+].flatten)

@@ -1,11 +1,11 @@
-package bballant
+package com.github.bballant
 
 import org.mortbay.jetty.Server
 import org.mortbay.jetty.webapp.WebAppContext
 
 
 object ServerConfig {
-  lazy val port = 8220
+  lazy val port = 8780
 }
 
 object BasicWebServer {

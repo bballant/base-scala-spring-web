@@ -1,4 +1,4 @@
-package bballant
+package com.github.bballant
 
 import org.scalatest.FunSuite
 import org.scalatest.matchers.ShouldMatchers

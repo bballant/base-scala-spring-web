@@ -15,4 +15,4 @@ if [ -z "$BB_ENV" ]; then
   BB_ENV="development"
 fi
 
-exec java -Dbb.env=$BB_ENV -Dlog4j.configuration=file:$SERVICE_ROOT/config/log4j_$BB_ENV.properties $JVM_OPTS -cp $CLASSPATH bballant.BasicWebServer "$@"
+exec java -Dbb.env=$BB_ENV -Dlog4j.configuration=file:$SERVICE_ROOT/config/log4j_$BB_ENV.properties $JVM_OPTS -cp $CLASSPATH com.github.bballant.BasicWebServer "$@"
